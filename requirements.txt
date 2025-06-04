@@ -1,0 +1,7 @@
+fastapi>=0.68.0
+uvicorn>=0.15.0
+pydantic>=1.9.0
+pymysql>=1.0.2
+SQLAlchemy>=1.4.0
+cryptography>=3.4.0  # 用于PyMySQL的安全连接 
+pymilvus

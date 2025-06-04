@@ -1,0 +1,140 @@
+{
+  "agentdns://alibaba/paperagent": {
+    "name": "论文Agent",
+    "address": "agentdns://alibaba/paperagent",
+    "organization": "alibaba",
+    "description": "一个帮助用户总结和分析学术论文的Agent",
+    "interfaces": [
+      {
+        "name": "summarize",
+        "description": "总结论文内容",
+        "parameters": {
+          "paper_url": "论文URL",
+          "max_length": "最大摘要长度"
+        }
+      },
+      {
+        "name": "analyze",
+        "description": "分析论文贡献和方法",
+        "parameters": {
+          "paper_url": "论文URL"
+        }
+      }
+    ],
+    "urls": [
+      "https://api.alibaba.com/agents/paper"
+    ],
+    "token_cost": 0.002,
+    "capabilities": [
+      "summarization",
+      "paper-analysis",
+      "academic"
+    ]
+  },
+  "agentdns://alibaba/codeassistant": {
+    "name": "代码助手",
+    "address": "agentdns://alibaba/codeassistant",
+    "organization": "alibaba",
+    "description": "一个帮助用户编写、优化和调试代码的Agent",
+    "interfaces": [
+      {
+        "name": "generate",
+        "description": "生成代码",
+        "parameters": {
+          "language": "编程语言",
+          "description": "功能描述"
+        }
+      },
+      {
+        "name": "review",
+        "description": "代码审查",
+        "parameters": {
+          "code": "代码内容",
+          "language": "编程语言"
+        }
+      }
+    ],
+    "urls": [
+      "https://api.alibaba.com/agents/code"
+    ],
+    "token_cost": 0.005,
+    "capabilities": [
+      "code-generation",
+      "code-review",
+      "debugging"
+    ]
+  },
+  "agentdns://tencent/translator": {
+    "name": "翻译助手",
+    "address": "agentdns://tencent/translator",
+    "organization": "tencent",
+    "description": "一个多语言翻译Agent，支持100多种语言之间的互译",
+    "interfaces": [
+      {
+        "name": "translate",
+        "description": "翻译文本",
+        "parameters": {
+          "text": "源文本",
+          "source_lang": "源语言",
+          "target_lang": "目标语言"
+        }
+      }
+    ],
+    "urls": [
+      "https://api.tencent.com/agents/translate"
+    ],
+    "token_cost": 0.001,
+    "capabilities": [
+      "translation",
+      "multilingual"
+    ]
+  },
+  "agentdns://baidu/searchassistant": {
+    "name": "搜索助手",
+    "address": "agentdns://baidu/searchassistant",
+    "organization": "baidu",
+    "description": "一个高级网络搜索Agent，能够从互联网获取最新信息",
+    "interfaces": [
+      {
+        "name": "search",
+        "description": "搜索信息",
+        "parameters": {
+          "query": "搜索查询",
+          "limit": "结果数量"
+        }
+      }
+    ],
+    "urls": [
+      "https://api.baidu.com/agents/search"
+    ],
+    "token_cost": 0.002,
+    "capabilities": [
+      "web-search",
+      "information-retrieval"
+    ]
+  },
+  "agentdns://example/paper_helper": {
+    "name": "论文助手",
+    "address": "agentdns://example/paper_helper",
+    "organization": "example",
+    "description": "一个帮助查找和总结学术论文的AI助手",
+    "interfaces": [
+      {
+        "name": "search_papers",
+        "description": "搜索相关论文",
+        "parameters": {
+          "query": "搜索关键词",
+          "year": "发表年份"
+        }
+      }
+    ],
+    "urls": [
+      "https://api.example.com/agent/paper_helper"
+    ],
+    "token_cost": 1.0,
+    "capabilities": [
+      "paper-search",
+      "summarization"
+    ]
+  }
+}

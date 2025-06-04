@@ -1,0 +1,26 @@
+{
+  "agentdns://alibaba": {
+    "name": "阿里巴巴",
+    "address": "agentdns://alibaba",
+    "description": "阿里巴巴集团",
+    "website": "https://www.alibaba.com/"
+  },
+  "agentdns://tencent": {
+    "name": "腾讯",
+    "address": "agentdns://tencent",
+    "description": "腾讯科技有限公司",
+    "website": "https://www.tencent.com/"
+  },
+  "agentdns://baidu": {
+    "name": "百度",
+    "address": "agentdns://baidu",
+    "description": "百度公司",
+    "website": "https://www.baidu.com/"
+  },
+  "agentdns://example": {
+    "name": "示例组织",
+    "address": "agentdns://example",
+    "description": "这是一个示例组织",
+    "website": "https://example.com/"
+  }
+}
