@@ -18,7 +18,7 @@
 ### 🏗️ Architecture
 
 ```
-![AgentDNS Architecture](./agentdns-backend/images/arch.png)
+![AgentDNS Architecture](/AgentDNS/agentdns-backend/images/arch.png)
 ```
 
 ## 🚀 Getting Started
