@@ -17,9 +17,9 @@
 
 ### 🏗️ Architecture
 
-```
+
 ![AgentDNS Architecture](https://github.com/AgentDNS/AgentDNS/raw/main/agentdns-backend/images/arch.png)
-```
+
 
 ## 🚀 Getting Started
 
@@ -441,7 +441,7 @@ tail -f /var/log/nginx/access.log
 
 ## 📄 License
 
-This project is licensed under MIT.
+This project is licensed under Apache License.
 
 
 **AgentDNS** - Make service discovery simple and efficient for AI Agents 🚀
