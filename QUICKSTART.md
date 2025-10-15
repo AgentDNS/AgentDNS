@@ -4,7 +4,7 @@
 
 ### Prerequisites
 
-- Linux OS (Ubuntu 18.04+, CentOS 7+, Debian 10+)
+- Linux OS
 - Python 3.10+
 - Docker and Docker Compose (for Milvus, PostgreSQL, Redis)
 
@@ -24,24 +24,25 @@ docker-compose up postgres redis milvus -d
 ### 3. Generate ENCRYPTION_KEY
 
 ```bash
-docker-compose up postgres redis milvus -d
+cd agentdns-backend
+python generate_encryption_key.py
 ```
 
 ### 4. Config .env
 
-#### 1) OpenAI API Configuration
-
-```bash
-OPENAI_API_KEY=your-openai-api-key
-OPENAI_BASE_URL=https://ark.cn-beijing.volces.com/api/v3
-OPENAI_EMBEDDING_MODEL=text-embedding-3-large
-OPENAI_MAX_TOKENS=8000
-```
-
-#### 2) Encrypted configuration
+#### 1) ENCRYPTION_KEY configuration
 
 ```bash 
 ENCRYPTION_KEY=your-secret-key-here
+```
+
+#### 2) OpenAI API Configuration
+
+```bash
+OPENAI_API_KEY=your-api-key
+OPENAI_BASE_URL=https://ark.cn-beijing.volces.com/api/v3
+OPENAI_EMBEDDING_MODEL=doubao-embedding-text-240715
+OPENAI_MAX_TOKENS=4096
 ```
 
 ### 4. Run agentdns-backend
