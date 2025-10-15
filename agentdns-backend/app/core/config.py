@@ -22,7 +22,7 @@ class Settings(BaseSettings):
     # API
     API_V1_STR: str = "/api/v1"
     PROJECT_NAME: str = "AgentDNS"
-    VERSION: str = "1.0.0"
+    VERSION: str = "0.1.0"
     
     # External Services
     OPENAI_API_KEY: Optional[str] = None
@@ -32,8 +32,8 @@ class Settings(BaseSettings):
     
     # OpenAI Embedding (custom configuration)
     OPENAI_BASE_URL: str = "https://ark.cn-beijing.volces.com/api/v3"
-    OPENAI_EMBEDDING_MODEL: str = "ep-20250610224627-n8hjm"
-    OPENAI_MAX_TOKENS: int = 8000  # keep existing token limit
+    OPENAI_EMBEDDING_MODEL: str = "doubao-embedding-text-240715"
+    OPENAI_MAX_TOKENS: int = 4096
     
     # Environment
     ENVIRONMENT: str = "development"

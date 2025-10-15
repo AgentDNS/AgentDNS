@@ -1,0 +1,160 @@
+services:
+  # PostgreSQL数据库
+  postgres:
+    image: postgres:15-alpine
+    container_name: agentdns-postgres
+    environment:
+      POSTGRES_DB: agentdns
+      POSTGRES_USER: agentdns
+      POSTGRES_PASSWORD: your_password_here
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - agentdns-network
+
+  # Redis缓存
+  redis:
+    image: redis:7-alpine
+    container_name: agentdns-redis
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    networks:
+      - agentdns-network
+
+  # Etcd for Milvus
+  etcd:
+    container_name: milvus-etcd
+    image: quay.io/coreos/etcd:v3.5.18
+    environment:
+      - ETCD_AUTO_COMPACTION_MODE=revision
+      - ETCD_AUTO_COMPACTION_RETENTION=1000
+      - ETCD_QUOTA_BACKEND_BYTES=4294967296
+      - ETCD_SNAPSHOT_COUNT=50000
+    volumes:
+      - etcd_data:/etcd
+    command: etcd -advertise-client-urls=http://etcd:2379 -listen-client-urls http://0.0.0.0:2379 --data-dir /etcd
+    healthcheck:
+      test: ["CMD", "etcdctl", "endpoint", "health"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+    networks:
+      - agentdns-network
+
+  # MinIO for Milvus
+  minio:
+    container_name: milvus-minio
+    image: minio/minio:RELEASE.2024-05-28T17-19-04Z
+    environment:
+      MINIO_ACCESS_KEY: minioadmin
+      MINIO_SECRET_KEY: minioadmin
+    ports:
+      - "9001:9001"
+      - "9000:9000"
+    volumes:
+      - minio_data:/minio_data
+    command: minio server /minio_data --console-address ":9001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+    networks:
+      - agentdns-network
+
+  # Milvus向量数据库
+  milvus:
+    container_name: agentdns-milvus
+    image: milvusdb/milvus:v2.5.18
+    command: ["milvus", "run", "standalone"]
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      MINIO_REGION: us-east-1
+      ETCD_ENDPOINTS: etcd:2379
+      MINIO_ADDRESS: minio:9000
+    volumes:
+      - milvus_data:/var/lib/milvus
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:19530"]
+      interval: 30s
+      start_period: 90s
+      timeout: 20s
+      retries: 3
+    ports:
+      - "19530:19530"
+      - "9091:9091"
+    depends_on:
+      - "etcd"
+      - "minio"
+    networks:
+      - agentdns-network
+
+  # 后端API服务
+  backend:
+    build:
+      context: ./agentdns-backend
+      dockerfile: Dockerfile
+    container_name: agentdns-backend
+    environment:
+      DATABASE_URL: postgresql://agentdns:your_password_here@postgres:5432/agentdns
+      REDIS_URL: redis://redis:6379/0
+      MILVUS_HOST: milvus
+      MILVUS_PORT: 19530
+      OPENAI_API_KEY: ${OPENAI_API_KEY}  # 从环境变量获取
+      SECRET_KEY: your_secret_key_here_make_it_very_long_and_random
+      ACCESS_TOKEN_EXPIRE_MINUTES: 30
+      DEBUG: "false"
+    depends_on:
+      - postgres
+      - redis
+      - milvus
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./agentdns-backend:/app
+    networks:
+      - agentdns-network
+
+  # 管理端前端Web应用
+  admin-frontend:
+    build:
+      context: ./agentdns-frontend
+      dockerfile: Dockerfile
+    container_name: agentdns-admin-frontend
+    depends_on:
+      - backend
+    ports:
+      - "3001:80"
+    networks:
+      - agentdns-network
+
+  # 客户端前端Web应用
+  customer-frontend:
+    build:
+      context: ./customer-frontend
+      dockerfile: Dockerfile
+    container_name: agentdns-customer-frontend
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+    networks:
+      - agentdns-network
+
+volumes:
+  postgres_data:
+  redis_data:
+  etcd_data:
+  minio_data:
+  milvus_data:
+
+networks:
+  agentdns-network:
+    driver: bridge 
