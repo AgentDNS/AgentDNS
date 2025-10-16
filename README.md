@@ -1,10 +1,8 @@
-# AgentDNS Root System
-
 <!-- markdownlint-disable MD001 MD041 -->
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/AgentDNS/AgentDNS/raw/main/images/logo-dark.png" width="55%">
-    <img alt="vLLM" src="https://github.com/AgentDNS/AgentDNS/raw/main/images/logo-light.png" width="55%">
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/AgentDNS/AgentDNS/raw/main/images/logo-dark.png" width="300">
+    <img alt="AgentDNS" src="https://github.com/AgentDNS/AgentDNS/raw/main/images/logo-light.png" width="300">
   </picture>
 </p>
 
