@@ -1,26 +1,51 @@
-# AgentDNS Backend
+# AgentDNS Root System
+
+<!-- markdownlint-disable MD001 MD041 -->
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/AgentDNS/AgentDNS/raw/main/images/logo-dark.png" width=55%>
+    <img alt="vLLM" src="https://github.com/AgentDNS/AgentDNS/raw/main/images/logo-light.png" width=55%>
+  </picture>
+</p>
+
+<h3 align="center">
+A DNS-Inspired Service Discovery Layer for LLM Agents
+</h3>
+
+---
+**Important Notice: Upcoming Breaking Changes (Q4 2025)**
+
+We are working on a major update to this project, which is scheduled for release between **October and December 2025**. This new version will contain **breaking changes**. **We strongly advise against using this upcoming release in production** until a stable version is available and you have verified compatibility.
+
+---
+
+*Latest News* 🔥
+
+- **[2025/10] We are open-sourcing the AgentDNS system!** The backend, frontend, SDK, and multi-protocol adapters will be released progressively.
+- **[2025/06] Our AgentDNS paper was released!** We introduced AgentDNS, a system for LLM Agent service discovery, dedicated to building infrastructure for general-purpose AI agents. Check it out on [arXiv](https://arxiv.org/html/2505.22368v1).
+
 
 ![AgentDNS Logo](https://img.shields.io/badge/AgentDNS-v0.1.0-blue.svg)
 
-## 📋 Overview
+## Overview
 
 **AgentDNS** is a root-domain naming and service discovery system designed for LLM Agents. It provides a complete solution for service registration, discovery, proxying, and management to help AI Agents find and consume services easily.
 
-### ✨ Key Features
+### Key Features
 
-- 🔍 **Semantic Discovery** - Vector-based semantic search for services
-- 🛡️ **Secure Proxy** - Built-in auth and API key management
-- 📊 **Usage Analytics** - Detailed usage and billing
-- 🔌 **Multi-Protocol** - HTTPS, MCP, A2A, etc.
-- 📈 **Monitoring & Alerts** - Real-time service status
+- **Semantic Discovery** - Vector-based semantic search for services
+- **Secure Proxy** - Built-in auth and API key management
+- **Usage Analytics** - Detailed usage and billing
+- **Multi-Protocol** - HTTPS, MCP, A2A, etc.
+- **Monitoring & Alerts** - Real-time service status
 
-### 🏗️ Architecture
-
-
-![AgentDNS Architecture](https://github.com/AgentDNS/AgentDNS/raw/main/agentdns-backend/images/arch.png)
+### Architecture
 
 
-## 🚀 Getting Started
+<img src="https://github.com/AgentDNS/AgentDNS/raw/main/images/arch.png" alt="AgentDNS Architecture" width="70%">
+
+
+## Getting Started
 
 ## Quick Install
 
@@ -111,7 +136,8 @@ Expected response:
 }
 ```
 
-## 🛠️ 开发指南
+## 🛠️ Developer Guide
+
 
 ### 📁 Project Structure
 
