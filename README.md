@@ -3,8 +3,8 @@
 <!-- markdownlint-disable MD001 MD041 -->
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/AgentDNS/AgentDNS/raw/main/images/logo-dark.png" width=55%>
-    <img alt="vLLM" src="https://github.com/AgentDNS/AgentDNS/raw/main/images/logo-light.png" width=55%>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/AgentDNS/AgentDNS/raw/main/images/logo-dark.png" width="55%">
+    <img alt="vLLM" src="https://github.com/AgentDNS/AgentDNS/raw/main/images/logo-light.png" width="55%">
   </picture>
 </p>
 
@@ -42,7 +42,9 @@ We are working on a major update to this project, which is scheduled for release
 ### Architecture
 
 
-<img src="https://github.com/AgentDNS/AgentDNS/raw/main/images/arch.png" alt="AgentDNS Architecture" width="70%">
+<p align="center">
+  <img src="https://github.com/AgentDNS/AgentDNS/raw/main/images/arch.png" alt="AgentDNS Architecture" width="70%">
+</p>
 
 
 ## Getting Started
